@@ -8,6 +8,7 @@ export class RecipeBookService {
     recipeSelected = new EventEmitter<Recipe>();
     recipes: Recipe[] = [
         new Recipe(
+            1,
             'Big Tasty',
             'MC Donald Big tasty single',
             'https://images.openfoodfacts.org/images/products/200/000/002/5785/front_fr.23.full.jpg',
@@ -16,6 +17,7 @@ export class RecipeBookService {
                 new Ingredient('Cheese', 2)
             ]),
         new Recipe(
+            2,
             'Royal bacon',
             'MC Donald Royal Baocn',
             'https://manjaremcasa.pt/wp-content/uploads/2020/04/royal-bacon.png',
@@ -32,9 +34,14 @@ export class RecipeBookService {
         )
     }
 
+    getRecipe(id:number){
+        return this.recipes.find(r => r.id === id);
+    }
+
     getRecipes() {
         return this.recipes.slice();
     }
+
 
     sendDataToShoppingList(recipe: Recipe) {
         this.shoppingService.loadIngredients(recipe);
